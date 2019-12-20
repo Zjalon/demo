@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass;
 public class BaseId {
     @Id
     @GeneratedValue(generator = "sys-uuid")
-    @GenericGenerator(name = "sys-uuid", strategy = "uuid")
+    @GenericGenerator(name = "sys-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", length = 32)
     private String id;
 }
