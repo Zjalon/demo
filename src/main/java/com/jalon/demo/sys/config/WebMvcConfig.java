@@ -1,4 +1,4 @@
-package com.jalon.demo.config;
+package com.jalon.demo.sys.config;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

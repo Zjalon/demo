@@ -1,6 +1,6 @@
-package com.jalon.demo.controller;
+package com.jalon.demo.sys.controller;
 
-import com.jalon.demo.service.DemoService;
+import com.jalon.demo.sys.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ public class DemoController {
     private DemoService demoService;
 
     @GetMapping(value = "test")
-    public String test() {
-        return demoService.test();
+    public void test() {
+         demoService.initDb();
     }
 }
