@@ -7,6 +7,7 @@ import com.jalon.demo.sys.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,7 @@ import java.util.Set;
 
 @Slf4j
 @Service
-public class DemoService {
+public class InitDbService {
 
     @Autowired
     private UserRepository userRepository;
@@ -39,7 +40,7 @@ public class DemoService {
             log.info("用户存在");
             user = optionalUser.get();
         } else {
-            user = User.builder().username("USER").password("123456").build();
+            user = new User("USER", new BCryptPasswordEncoder().encode("123456")); //User.builder().username("USER").password("123456").build();
         }
         Optional<Role> optionalRole = roleRepository.findByCodeAndName("USER", "普通用户");
         Role role;

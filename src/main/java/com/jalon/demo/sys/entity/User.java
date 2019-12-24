@@ -1,19 +1,22 @@
 package com.jalon.demo.sys.entity;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 用户实体
+ * AllArgsConstructor:所有参数构造方法
+ * NoArgsConstructor:无参构造方法
+ */
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "sys_user")
 public class User extends BaseId implements Serializable {
@@ -61,7 +64,16 @@ public class User extends BaseId implements Serializable {
      * 多对多关系映射
      * Cascade,保存user时,级联保存role
      */
-    @ManyToMany(mappedBy = "users")
-    @Cascade(value = {CascadeType.MERGE})
-    private Set<Role> roles;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_role_rel", //中间表的名称
+            //中间表user_role_rel和当前表关联关系,name指中间表字段名,referencedColumnName指当前实体字段名
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            //中间表user_role_rel和对方表关联关系,name指中间表字段名,referencedColumnName指对方表字段名
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private Set<Role> roles = new HashSet<>(0);
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

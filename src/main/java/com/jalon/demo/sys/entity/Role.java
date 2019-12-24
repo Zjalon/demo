@@ -10,6 +10,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "sys_role")
 public class Role extends BaseId implements Serializable {
@@ -32,12 +34,7 @@ public class Role extends BaseId implements Serializable {
     @Column(nullable = false, unique = true)
     private String code;
     //多对多关系映射
-    @ManyToMany
-    @JoinTable(name = "user_role_rel", //中间表的名称
-            //中间表user_role_rel和当前表关联关系,name指中间表字段名,referencedColumnName指当前实体字段名
-            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
-            //中间表user_role_rel和对方表关联关系,name指中间表字段名,referencedColumnName指对方表字段名
-            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>(0);
 
     @ManyToMany(mappedBy = "roles")
