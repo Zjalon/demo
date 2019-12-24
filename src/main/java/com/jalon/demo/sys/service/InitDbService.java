@@ -7,6 +7,8 @@ import com.jalon.demo.sys.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,5 +59,17 @@ public class InitDbService {
         }
         userRepository.save(user);
         roleRepository.save(role);
+    }
+
+    public void test() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+            log.info(username);
+        } else {
+            String username = principal.toString();
+            log.info(username);
+        }
     }
 }

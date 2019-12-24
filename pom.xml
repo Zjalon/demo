@@ -18,6 +18,8 @@
         <java.version>1.8</java.version>
         <mysql.version>5.1.47</mysql.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <thymeleaf-extras-springsecurity5.version>3.0.4.RELEASE</thymeleaf-extras-springsecurity5.version>
     </properties>
 
     <dependencies>
@@ -48,7 +50,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>${thymeleaf-extras-springsecurity5.version}</version>
+        </dependency>
+        <!-- StringUtils 主要为了这个,其他包暂时没有了解 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
         <!--   tools     -->
         <dependency>
             <groupId>org.projectlombok</groupId>

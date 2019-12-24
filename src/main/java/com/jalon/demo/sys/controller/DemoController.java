@@ -14,6 +14,6 @@ public class DemoController {
 
     @GetMapping(value = "test")
     public void test() {
-         initDbService.initDb();
+         initDbService.test();
     }
 }

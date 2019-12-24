@@ -1,7 +1,7 @@
 package com.jalon.demo.sys.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 /**
  * http://localhost:8080/swagger-ui.html
  */
-@Configurable
+@Configuration
 public class SwaggerConfig {
 
     @Bean
@@ -21,7 +21,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.jalon.demo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.jalon.demo"))
                 .paths(PathSelectors.any())
                 .build();
     }
