@@ -6,7 +6,6 @@ import com.jalon.demo.sys.entity.Role;
 import com.jalon.demo.sys.entity.User;
 import com.jalon.demo.sys.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
