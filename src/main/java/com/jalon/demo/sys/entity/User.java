@@ -64,7 +64,7 @@ public class User extends BaseId implements Serializable {
      * 多对多关系映射
      * Cascade,保存user时,级联保存role
      */
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(name = "user_role_rel", //中间表的名称
             //中间表user_role_rel和当前表关联关系,name指中间表字段名,referencedColumnName指当前实体字段名
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

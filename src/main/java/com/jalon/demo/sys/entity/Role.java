@@ -34,9 +34,15 @@ public class Role extends BaseId implements Serializable {
     @Column(nullable = false, unique = true)
     private String code;
     //多对多关系映射
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(targetEntity = User.class, mappedBy = "roles")
     private Set<User> users = new HashSet<>(0);
 
-    @ManyToMany(mappedBy = "roles")
+    //多对多关系映射
+    @ManyToMany
+    @JoinTable(name = "role_permission_rel", //中间表的名称
+            //中间表user_role_rel和当前表关联关系,name指中间表字段名,referencedColumnName指当前实体字段名
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            //中间表user_role_rel和对方表关联关系,name指中间表字段名,referencedColumnName指对方表字段名
+            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "id")})
     private Set<Permission> permissions = new HashSet<>(0);
 }

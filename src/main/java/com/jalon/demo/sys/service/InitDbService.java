@@ -1,7 +1,9 @@
 package com.jalon.demo.sys.service;
 
+import com.jalon.demo.sys.entity.Permission;
 import com.jalon.demo.sys.entity.Role;
 import com.jalon.demo.sys.entity.User;
+import com.jalon.demo.sys.repository.PermissionRepository;
 import com.jalon.demo.sys.repository.RoleRepository;
 import com.jalon.demo.sys.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,8 @@ public class InitDbService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PermissionRepository permissionRepository;
 
     @Value("${demo.init-db}")
     private boolean initDb;
@@ -53,19 +57,35 @@ public class InitDbService {
             role = Role.builder().code("USER").name("普通用户").build();
         }
         if (null == user.getRoles() || user.getRoles().size() < 1) {
+            log.info("新建用户角色关系");
             Set<Role> roles = new HashSet<>();
             roles.add(role);
             user.setRoles(roles);
         }
+        Optional<Permission> optionalPermission = permissionRepository.findByName("首页");
+        Permission permission;
+        if (optionalPermission.isPresent()) {
+            log.info("功能存在");
+            permission = optionalPermission.get();
+        } else {
+            permission = Permission.builder().name("首页").url("/").build();
+        }
+        if (null == role.getPermissions() || role.getPermissions().size() < 1) {
+            log.info("新建角色功能关系");
+            Set<Permission> permissions = new HashSet<>();
+            permissions.add(permission);
+            role.setPermissions(permissions);
+        }
         userRepository.save(user);
         roleRepository.save(role);
+        permissionRepository.save(permission);
     }
 
     public void test() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
+            String username = ((UserDetails) principal).getUsername();
             log.info(username);
         } else {
             String username = principal.toString();
