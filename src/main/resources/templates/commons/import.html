@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="import(cssPath,jsPath)">
+    <!--循环引入调用页面js-->
+    <script type="text/javascript" th:each="jsPath,status:${#strings.setSplit(jsPath,',')}"
+            th:src="@{${jsPath}}"></script>
+    <!--循环引入调用页面css-->
+    <link rel="stylesheet" type="text/css" th:each="cssPath,status:${#strings.setSplit(cssPath,',')}"
+          th:href="@{${cssPath}}"/>
+</div>
+</html>

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/commons/head::head('首页','/static/css/index.css','/static/js/index.js')">
-</head>
+<head th:replace="/commons/head::head('首页')"></head>
+<import th:include="/commons/import::import('/static/css/index.css','/static/js/index.js')"></import>
 <body>
 <div class="container-fluid row main h-100">
     <!--左侧菜单-->
-    <div th:include="/commons/menu::commonMenu" class="h-100 fixed-top-left bg-success"></div>
+    <div th:include="/commons/menu::commonMenu" class="h-100 fixed-left-menu"
+         style="max-height: 100%;overflow-y: scroll;"></div>
     <!--右侧页面-->
     <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 main">
         <!--头部-->
-        <div th:include="/commons/top::commonTop" class="fixed-top-right bg-danger"></div>
-        <div th:insert="/dashboard/dashboard::dashboard" class="fixed-center bg-success"></div>
+        <div th:include="/commons/top::commonTop" class="fixed-top-right"></div>
+        <div th:insert="/dashboard/dashboard::dashboard" class="fixed-center"></div>
         <!--底部-->
-        <div th:include="/commons/bottom::commonBottom" class="fixed-bottom-right bg-danger"></div>
+        <div th:include="/commons/bottom::commonBottom" class="fixed-bottom-right"></div>
     </div>
 </div>
 </body>

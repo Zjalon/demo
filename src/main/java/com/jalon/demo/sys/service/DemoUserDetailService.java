@@ -34,7 +34,7 @@ public class DemoUserDetailService implements UserDetailsService {
         User user = optional.get();
         Set<RoleDTO> roleDTOS = new HashSet<>(0);
         for (Role role : user.getRoles()) {
-            roleDTOS.add(new RoleDTO(role.getName(), role.getCode()));
+            roleDTOS.add(new RoleDTO(role.getId(), role.getName(), role.getCode()));
         }
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())

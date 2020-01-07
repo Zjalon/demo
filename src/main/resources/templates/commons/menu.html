@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <div th:fragment="commonMenu">
-    菜单
+    <import th:include="/commons/import::import( '/static/css/menu.css','/static/js/menu.js')"></import>
+
+    <ul class="nav flex-column" id="accordion">
+        <li class="nav-item">
+            <a class="nav-link" href="#">菜单1</a>
+        </li>
+        <li class="nav-item">
+            <a href="#demo2" class="nav-link" data-toggle="collapse">菜单2</a>
+            <div id="demo2" class="collapse" data-parent="#accordion">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">菜单21</a>
+                        <a class="nav-link" href="#">菜单22</a>
+                        <a class="nav-link" href="#">菜单23</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="#demo3" class="nav-link" data-toggle="collapse">菜单3</a>
+            <div id="demo3" class="collapse" data-parent="#accordion">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="#demo31" class="nav-link" data-toggle="collapse">菜单31</a>
+                        <div id="demo31" class="collapse">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">菜单311</a>
+                                    <a class="nav-link" href="#">菜单312</a>
+                                    <a class="nav-link" href="#">菜单313</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="nav-link" href="#">菜单32</a>
+                        <a class="nav-link" href="#">菜单33</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="#demo4" class="nav-link disabled" data-toggle="collapse">简单的折叠</a>
+            <div id="demo4" class="collapse" data-parent="#accordion">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link1</a>
+                        <a class="nav-link" href="#">Link2</a>
+                        <a class="nav-link" href="#">Link3</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 </div>
 </html>

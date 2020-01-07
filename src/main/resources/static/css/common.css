@@ -9,7 +9,7 @@ html, body {
     padding: 0 !important;
 }
 
-.fixed-top-left {
+.fixed-left-menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -32,11 +32,17 @@ html, body {
     right: 0;
     z-index: 1030;
 }
-.fixed-center{
+
+.fixed-center {
     position: fixed;
     left: 25%;
-    top:24px;
+    top: 24px;
     bottom: 24px;
     right: 0;
     z-index: 1030;
+}
+
+/*左侧菜单过长时,隐藏垂直滚动条*/
+div::-webkit-scrollbar {
+    display: none;
 }
