@@ -1,3 +1,42 @@
-body{
-    width: 100%;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.fixed-top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 75%;
+    z-index: 1030;
+}
+
+.fixed-top-right {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    right: 0;
+    z-index: 1030;
+}
+
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 0;
+    left: 25%;
+    right: 0;
+    z-index: 1030;
+}
+.fixed-center{
+    position: fixed;
+    left: 25%;
+    top:24px;
+    bottom: 24px;
+    right: 0;
+    z-index: 1030;
 }

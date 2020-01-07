@@ -3,11 +3,17 @@
 <head th:replace="/commons/head::head('首页','/static/css/index.css','/static/js/index.js')">
 </head>
 <body>
-<div th:include="/commons/top::commonTop"></div>
-这里是首页
-<form th:action="@{/logout.json}" method="post">
-    <input type="submit" th:value="注销登录">
-</form>
-<div th:include="/commons/bottom::commonBottom"></div>
+<div class="container-fluid row main h-100">
+    <!--左侧菜单-->
+    <div th:include="/commons/menu::commonMenu" class="h-100 fixed-top-left bg-success"></div>
+    <!--右侧页面-->
+    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 main">
+        <!--头部-->
+        <div th:include="/commons/top::commonTop" class="fixed-top-right bg-danger"></div>
+        <div th:insert="/dashboard/dashboard::dashboard" class="fixed-center bg-success"></div>
+        <!--底部-->
+        <div th:include="/commons/bottom::commonBottom" class="fixed-bottom-right bg-danger"></div>
+    </div>
+</div>
 </body>
 </html>
